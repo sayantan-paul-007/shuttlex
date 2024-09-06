@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+.hero{
+    background-image: url('../images/section-2-img.jpg');
+    width: 100%;
+    height: 100vh;
+}
+nav{
+    padding: 25px 56px;
+    width: 100%;
+}
+.logo{
+    height: 70px;
+}

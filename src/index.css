@@ -1,0 +1,7 @@
+body{
+    background-color: black;
+}
+@font-face {
+    font-family: 'Bison-Bold';
+    src: url('./assets/fonts/Bison-Bold.ttf') format('truetype');
+}
