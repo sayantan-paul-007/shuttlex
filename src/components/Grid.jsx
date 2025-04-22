@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-const [posts,setPosts]=useState([])
+
+const Grid = () => {
+    const [posts,setPosts]=useState([])
 useEffect(()=>{
     fetch('https://api.spacexdata.com/v4/landpads')
     .then((res)=>res.json())
     .then((data)=>setPosts(data))
     .catch((err) => console.error('Error fetching posts:', err))
 },[])
-const Grid = () => {
   return (
     <div>
         <ul>
