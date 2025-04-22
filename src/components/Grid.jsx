@@ -14,8 +14,8 @@ useEffect(()=>{
             {
                 posts&&posts.map((post)=>(
                     <li key={post.id}>
-                        <img src={post.images[0]} alt="Image" />
-                        <h1>{post.full_name}</h1>
+                        <img src={post.images.large[0]} alt="Image" />
+                        <h1>{post.full_name}({post.name})</h1>
                         <p>{post.details}</p>
                         <p>{post.status==="active"?`✅${post.status}`:`❌${post.status}`}</p>
 
