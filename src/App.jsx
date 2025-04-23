@@ -1,13 +1,40 @@
-import { useState } from 'react'
-import './App.css'
-import Grid from './components/Grid'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Capsules from './pages/Capsules'
+import Cores from './pages/Cores'
+import Navbar from './components/Navbar'
+import Dragons from './pages/Dragons';
+import Crew from './pages/Crew';
+import Launchpads from './pages/Launchpads';
+import Landpads from './pages/Landpads';
+import Payloads from './pages/Payloads';
+import Rockets from './pages/Rockets';
+import Ships from './pages/Ships';
+import Starlink from './pages/Starlink';
+import Launches from './pages/Launches';
+import Hero from './components/Hero';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-     <Grid/>
+    <Router>
+      <Hero />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Capsules />} />
+        <Route path="/cores" element={<Cores />} />
+        <Route path="/crew" element={<Crew />} />
+        <Route path="/dragons" element={<Dragons />} />
+        <Route path="/landpads" element={<Landpads />} />
+        <Route path='/launches' element={<Launches/>}/>
+        <Route path="/launchpads" element={<Launchpads />} />
+        <Route path="/payloads" element={<Payloads />} />
+        <Route path="/rockets" element={<Rockets />} />
+        <Route path="/ships" element={<Ships />} />
+        <Route path="/starlink" element={<Starlink />} />
+        
+      </Routes>
+    </Router>
     </>
   )
 }
