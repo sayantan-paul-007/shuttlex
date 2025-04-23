@@ -16,8 +16,8 @@ const Landpads = () => {
     <>
     <Grid>
                 {
-                posts.map((post)=>(
-                    <Card key={post.id}>
+                posts.map((post,index)=>(
+                  <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
                         <img src={post.images.large[0]} alt="Image" className='w-full h-52 object-cover border-b border-white/10' />
                         <h2 className="text-2xl font-bold  mb-1">{post.full_name}({post.name})</h2>
                         <p className="text-sm text-gray-400 mb-5">{post.details}</p>

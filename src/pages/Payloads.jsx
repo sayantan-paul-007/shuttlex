@@ -36,8 +36,8 @@ const Payloads = () => {
     <>
     <Grid>
                 {
-                posts.map((post)=>(
-                    <Card key={post.id}>
+               posts.map((post,index)=>(
+                <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
                       
   <h2 className="text-xl font-bold mt-2">{post.name}</h2>
   <p className="text-sm text-gray-400">Type:{post.type}</p>

@@ -37,8 +37,8 @@ const Launches = () => {
     <>
     <Grid>
                 {
-                posts.map((post)=>(
-                    <Card key={post.id}>
+               posts.map((post,index)=>(
+                <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
                         <img src={post.links.patch.small?post.links.patch.small:'https://placehold.co/600x400.png'} alt={post.name} className="w-full h-48 object-contain p-4" />
   <h2 className="text-xl font-bold">{post.name}</h2>
   <p className="text-sm text-gray-400">Flight #{post.flight_number}</p>

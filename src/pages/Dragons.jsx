@@ -15,8 +15,8 @@ const Dragons = () => {
     <>
     <Grid>
                 {
-                posts.map((post)=>(
-                    <Card key={post.id}>
+                posts.map((post,index)=>(
+                  <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
                        <img src={post.flickr_images[0]} alt={post.name} className="w-full h-48 object-fit" />
   <h2 className="text-xl font-bold mt-2">{post.name}</h2>
   <p className="text-sm text-gray-400">{post.type}</p>

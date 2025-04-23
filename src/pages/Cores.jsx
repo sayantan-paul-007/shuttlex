@@ -37,8 +37,8 @@ const Cores = () => {
     <>
     <Grid>
                 {
-                posts.map((post)=>(
-                    <Card key={post.id}>
+                posts.map((post,index)=>(
+                  <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
                        
                         <h2 className="text-2xl font-bold  mb-1">{post.serial}</h2>
                         
