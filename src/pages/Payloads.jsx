@@ -1,59 +1,55 @@
-import React, { useEffect, useState } from 'react'
-import Grid from '../components/Grid'
-import Card from '../components/Card'
+import React, { useEffect, useState } from "react";
+import Grid from "../components/Grid";
+import Card from "../components/Card";
 const Payloads = () => {
- const [posts, setPosts] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1);
-   const itemsPerPage = 12;
-   const [totalPages, setTotalPages] = useState(1);
-   useEffect(() => {
-     const getPayloads = async () => {
-       try {
-         const res = await fetch("https://api.spacexdata.com/v4/payloads/query", {
-           method: "POST",
-           headers: {
-             "Content-Type": "application/json",
-           },
-           body: JSON.stringify({
-             query: {},
-             options: {
-               page: currentPage, // change this dynamically
-               limit: itemsPerPage, // number of items per page
-             },
-           }),
-         });
-         const data = await res.json();
-         setPosts(data.docs);
-         setTotalPages(data.totalPages);
-       } catch (err) {
-         console.error("Error fetching posts:", err);
-       }
-     };
-     getPayloads();
-   }, [currentPage]);
-   if (posts.length === 0) return <p>Loading Payloads...</p>;
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const [totalPages, setTotalPages] = useState(1);
+  useEffect(() => {
+    const getPayloads = async () => {
+      try {
+        const res = await fetch(
+          "https://api.spacexdata.com/v4/payloads/query",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              query: {},
+              options: {
+                page: currentPage, // change this dynamically
+                limit: itemsPerPage, // number of items per page
+              },
+            }),
+          }
+        );
+        const data = await res.json();
+        setPosts(data.docs);
+        setTotalPages(data.totalPages);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    };
+    getPayloads();
+  }, [currentPage]);
+  if (posts.length === 0) return <p>Loading Payloads...</p>;
   return (
     <>
-    <Grid>
-                {
-               posts.map((post,index)=>(
-                <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
-                      
-  <h2 className="text-xl font-bold mt-2">{post.name}</h2>
-  <p className="text-sm text-gray-400">Type:{post.type}</p>
-  <p>{post.customers.map(custom=> custom)}</p>
-  <p>{post.nationalities.map(nation=> nation)}</p>
-  <p>Orbit:{post.orbit}</p>
-  <p>Mass: {post.mass_kg===null?"unknown":post.mass_kg} kg</p>
-  
-                    </Card>
-
-                    
-                ))
-            }
-        
-    </Grid>
-    <div className="flex justify-center mt-4 space-x-2">
+      <Grid>
+        {posts.map((post, index) => (
+          <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
+            <h2 className="text-xl font-bold mt-2">{post.name}</h2>
+            <p className="text-sm text-gray-400">Type:{post.type}</p>
+            <p>{post.customers.map((custom) => custom)}</p>
+            <p>{post.nationalities.map((nation) => nation)}</p>
+            <p>Orbit:{post.orbit}</p>
+            <p>Mass: {post.mass_kg === null ? "unknown" : post.mass_kg} kg</p>
+          </Card>
+        ))}
+      </Grid>
+      <div className="flex justify-center mt-4 space-x-2">
         {/* First Button */}
         {currentPage > 3 && (
           <button
@@ -102,7 +98,7 @@ const Payloads = () => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Payloads
+export default Payloads;

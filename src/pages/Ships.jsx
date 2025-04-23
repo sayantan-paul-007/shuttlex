@@ -35,8 +35,8 @@ const Ships = () => {
   return (
     <>
       <Grid>
-        {posts.map((post,index)=>(
-                    <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
+        {posts.map((post, index) => (
+          <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
             <img
               src={post.image ? post.image : "https://placehold.co/600x400.png"}
               alt={post.name}

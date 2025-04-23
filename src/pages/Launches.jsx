@@ -1,57 +1,65 @@
-import React, { useEffect, useState } from 'react'
-import Grid from '../components/Grid'
-import Card from '../components/Card'
+import React, { useEffect, useState } from "react";
+import Grid from "../components/Grid";
+import Card from "../components/Card";
 const Launches = () => {
-     const [posts, setPosts] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1);
-      const itemsPerPage = 12;
-      const [totalPages, setTotalPages] = useState(1);
-      useEffect(() => {
-        const getPayloads = async () => {
-          try {
-            const res = await fetch("https://api.spacexdata.com/v4/launches/query", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const [totalPages, setTotalPages] = useState(1);
+  useEffect(() => {
+    const getPayloads = async () => {
+      try {
+        const res = await fetch(
+          "https://api.spacexdata.com/v4/launches/query",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              query: {},
+              options: {
+                page: currentPage, // change this dynamically
+                limit: itemsPerPage, // number of items per page
               },
-              body: JSON.stringify({
-                query: {},
-                options: {
-                  page: currentPage, // change this dynamically
-                  limit: itemsPerPage, // number of items per page
-                },
-              }),
-            });
-            const data = await res.json();
-            setPosts(data.docs);
-            setTotalPages(data.totalPages);
-          } catch (err) {
-            console.error("Error fetching posts:", err);
+            }),
           }
-        };
-        getPayloads();
-      }, [currentPage]);
-      if (posts.length === 0) return <p>Loading Launches...</p>;
-  
+        );
+        const data = await res.json();
+        setPosts(data.docs);
+        setTotalPages(data.totalPages);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    };
+    getPayloads();
+  }, [currentPage]);
+  if (posts.length === 0) return <p>Loading Launches...</p>;
+
   return (
     <>
-    <Grid>
-                {
-               posts.map((post,index)=>(
-                <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
-                        <img src={post.links.patch.small?post.links.patch.small:'https://placehold.co/600x400.png'} alt={post.name} className="w-full h-48 object-contain p-4" />
-  <h2 className="text-xl font-bold">{post.name}</h2>
-  <p className="text-sm text-gray-400">Flight #{post.flight_number}</p>
-  <p>Result:{post.success ? '✅ Successful' : '❌ Failed'}</p>
-  <p>Launched:{new Date(post.date_utc).toLocaleDateString()}</p>
-                    </Card>
-
-                    
-                ))
-            }
-        
-    </Grid>
-    <div className="flex justify-center mt-4 space-x-2">
+      <Grid>
+        {posts.map((post, index) => (
+          <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
+            <img
+              src={
+                post.links.patch.small
+                  ? post.links.patch.small
+                  : "https://placehold.co/600x400.png"
+              }
+              alt={post.name}
+              className="w-full h-48 object-contain p-4"
+            />
+            <h2 className="text-xl font-bold">{post.name}</h2>
+            <p className="text-sm text-gray-400">
+              Flight #{post.flight_number}
+            </p>
+            <p>Result:{post.success ? "✅ Successful" : "❌ Failed"}</p>
+            <p>Launched:{new Date(post.date_utc).toLocaleDateString()}</p>
+          </Card>
+        ))}
+      </Grid>
+      <div className="flex justify-center mt-4 space-x-2">
         {/* First Button */}
         {currentPage > 3 && (
           <button
@@ -100,7 +108,7 @@ const Launches = () => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Launches
+export default Launches;

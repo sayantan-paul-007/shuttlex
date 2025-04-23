@@ -1,57 +1,67 @@
-import React, { useEffect, useState } from 'react'
-import Grid from '../components/Grid'
-import Card from '../components/Card'
+import React, { useEffect, useState } from "react";
+import Grid from "../components/Grid";
+import Card from "../components/Card";
 const Capsules = () => {
- const [posts, setPosts] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1);
-      const itemsPerPage = 12;
-      const [totalPages, setTotalPages] = useState(1);
-      useEffect(() => {
-        const getCapsules = async () => {
-          try {
-            const res = await fetch("https://api.spacexdata.com/v4/capsules/query", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const [totalPages, setTotalPages] = useState(1);
+  useEffect(() => {
+    const getCapsules = async () => {
+      try {
+        const res = await fetch(
+          "https://api.spacexdata.com/v4/capsules/query",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              query: {},
+              options: {
+                page: currentPage, // change this dynamically
+                limit: itemsPerPage, // number of items per page
               },
-              body: JSON.stringify({
-                query: {},
-                options: {
-                  page: currentPage, // change this dynamically
-                  limit: itemsPerPage, // number of items per page
-                },
-              }),
-            });
-            const data = await res.json();
-            setPosts(data.docs);
-            setTotalPages(data.totalPages);
-          } catch (err) {
-            console.error("Error fetching posts:", err);
+            }),
           }
-        };
-        getCapsules();
-      }, [currentPage]);
-      if (posts.length === 0) return <p>Loading Capsules...</p>;
+        );
+        const data = await res.json();
+        setPosts(data.docs);
+        setTotalPages(data.totalPages);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    };
+    getCapsules();
+  }, [currentPage]);
+  if (posts.length === 0) return <p>Loading Capsules...</p>;
   return (
     <>
-    <Grid>
-                {
-                posts.map((post,index)=>(
-                    <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
-                       
-                        <h2 className="text-2xl font-bold  mb-1">{post.serial}({post.type})</h2>
-                        
-                        <p className="text-sm text-gray-700 mb-1">Status:{post.status==="active"?`✅${post.status}`:post.status==="retired"?`❌${post.status}`:`🟡${post.status}`}</p>
-                       <p className="text-sm text-gray-400 mb-1">Water Landings: {post.water_landings}</p>
-                       <p className="text-sm text-gray-400 mb-1">Land Landings: {post.land_landings}</p>
-                    </Card>
+      <Grid>
+        {posts.map((post, index) => (
+          <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
+            <h2 className="text-2xl font-bold  mb-1">
+              {post.serial}({post.type})
+            </h2>
 
-                    
-                ))
-            }
-        
-    </Grid>
-    <div className="flex justify-center mt-4 space-x-2">
+            <p className="text-sm text-gray-700 mb-1">
+              Status:
+              {post.status === "active"
+                ? `✅${post.status}`
+                : post.status === "retired"
+                ? `❌${post.status}`
+                : `🟡${post.status}`}
+            </p>
+            <p className="text-sm text-gray-400 mb-1">
+              Water Landings: {post.water_landings}
+            </p>
+            <p className="text-sm text-gray-400 mb-1">
+              Land Landings: {post.land_landings}
+            </p>
+          </Card>
+        ))}
+      </Grid>
+      <div className="flex justify-center mt-4 space-x-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
@@ -67,7 +77,7 @@ const Capsules = () => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Capsules
+export default Capsules;

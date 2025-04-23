@@ -38,8 +38,8 @@ const Starlink = () => {
   return (
     <>
       <Grid>
-        {posts.map((post,index)=>(
-                    <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
+        {posts.map((post, index) => (
+          <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
             <h2 className="text-xl font-bold mt-2">
               {post.spaceTrack.OBJECT_NAME}
             </h2>
@@ -59,7 +59,6 @@ const Starlink = () => {
                 ? post.spaceTrack.DECAY_DATE
                 : "✅ Active"}
             </p>
-           
           </Card>
         ))}
       </Grid>
