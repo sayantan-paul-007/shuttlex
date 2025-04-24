@@ -1,25 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "../components/Grid";
 import Card from "../components/Card";
-
+import Search from "../components/Search";
+import { SearchContext } from "../context/SearchContext";
+import { FilterContext } from "../context/FilterContext";
+import Filter from "../components/Filter";
 const Crew = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const [totalPages, setTotalPages] = useState(1);
+  const {search} = useContext(SearchContext)
+  const {crewFilter, setCrewFilter} = useContext(FilterContext)
+  const [loading, setLoading] =useState(true)
   useEffect(() => {
     const getCrew = async () => {
       try {
+        setLoading(true);
         const res = await fetch("https://api.spacexdata.com/v4/crew/query", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            query: {},
+            query: {
+              ...(crewFilter.agency && { agency: crewFilter.agency }),
+              ...(search && { name: { $regex: search, $options: "i" } })
+            },
             options: {
               page: currentPage, // change this dynamically
-              limit: itemsPerPage, // number of items per page
+              limit: itemsPerPage, 
             },
           }),
         });
@@ -29,13 +39,34 @@ const Crew = () => {
       } catch (err) {
         console.error("Error fetching posts:", err);
       }
+      finally{
+        setLoading(false);
+      }
     };
     getCrew();
-  }, [currentPage]);
-  if (posts.length === 0) return <p>Loading Crew...</p>;
-
+  }, [currentPage, crewFilter, search]);
+ 
   return (
     <>
+     <Search placeholder={"Search Crew..."} /> 
+     <Filter>
+   
+
+      <select
+        value={crewFilter.agency}
+        onChange={(e) => setCrewFilter((prev) => ({ ...prev, agency:e.target.value }))}
+      >
+        <option value="">All</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </Filter>
+    {loading ? (<p>Loading Crew...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+ <>
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -66,6 +97,10 @@ const Crew = () => {
         ))}
       </div>
     </>
+
+    )}
+    </>
+   
   );
 };
 

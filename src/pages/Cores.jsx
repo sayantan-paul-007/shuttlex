@@ -1,25 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "../components/Grid";
 import Card from "../components/Card";
-
+import { FilterContext } from "../context/FilterContext";
+import Search from "../components/Search";
+import { SearchContext } from "../context/SearchContext";
+import Filter from "../components/Filter";
 const Cores = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const [loading, setLoading] =useState(true)
   const [totalPages, setTotalPages] = useState(1);
+  const {coresFilter, setCoresFilter} = useContext(FilterContext)
+  const {search} =useContext(SearchContext)
   useEffect(() => {
+    
     const getCores = async () => {
       try {
+        setLoading(true)
         const res = await fetch("https://api.spacexdata.com/v4/cores/query", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            query: {},
+            query: {
+              ...(coresFilter.status && { status: coresFilter.status }),
+              ...(coresFilter.block && { block: coresFilter.block }),
+              ...(search && { serial: { $regex: search, $options: "i" } })
+            },
             options: {
-              page: currentPage, // change this dynamically
-              limit: itemsPerPage, // number of items per page
+              page: currentPage, 
+              limit: itemsPerPage, 
             },
           }),
         });
@@ -29,11 +41,44 @@ const Cores = () => {
       } catch (err) {
         console.error("Error fetching posts:", err);
       }
+      finally{
+        setLoading(false)
+      }
     };
     getCores();
-  }, [currentPage]);
-  if (posts.length === 0) return <p>Loading Cores...</p>;
-  return (
+    setCurrentPage(1);
+  }, [currentPage, coresFilter, search]);
+   return (
+    <>
+     <Search placeholder={"Search Cores..."} /> 
+     <Filter>
+    <select
+        value={coresFilter.status}
+        onChange={(e) => setCoresFilter((prev) => ({ ...prev, status: e.target.value }))}
+      >
+        <option value=""></option>
+        <option value="active">Active</option>
+        <option value="lost">Lost</option>
+        <option value="expended">Expended</option>
+        <option value="inactive">Inactive</option>
+        
+       
+      </select>
+
+      <select
+        value={coresFilter.block}
+        onChange={(e) => setCoresFilter((prev) => ({ ...prev, block:Number(e.target.value) }))}
+      >
+        <option value="">All</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </Filter>
+    {loading ? (<p>Loading Cores...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
     <>
       <Grid>
         {posts.map((post, index) => (
@@ -72,7 +117,9 @@ const Cores = () => {
           </button>
         ))}
       </div>
+    </>)}
     </>
+   
   );
 };
 

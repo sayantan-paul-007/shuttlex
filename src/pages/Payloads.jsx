@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "../components/Grid";
 import Card from "../components/Card";
+import Search from "../components/Search";
+import { SearchContext } from "../context/SearchContext";
+import { FilterContext } from "../context/FilterContext";
+import Filter from "../components/Filter";
 const Payloads = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] =useState(true)
+  const {payloadFilter, setPayloadFilter} =useContext(FilterContext)
+  const {search}= useContext(SearchContext)
   useEffect(() => {
     const getPayloads = async () => {
       try {
+        setLoading(true)
         const res = await fetch(
           "https://api.spacexdata.com/v4/payloads/query",
           {
@@ -17,7 +25,12 @@ const Payloads = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              query: {},
+              query: {
+                ...(payloadFilter.type && { type: payloadFilter.type }),
+                ...(payloadFilter.orbit && { orbit: payloadFilter.orbit }),
+                ...(payloadFilter.reused && { reused: payloadFilter.reused }),
+              ...(search && { name: { $regex: search, $options: "i" } })
+              },
               options: {
                 page: currentPage, // change this dynamically
                 limit: itemsPerPage, // number of items per page
@@ -31,12 +44,64 @@ const Payloads = () => {
       } catch (err) {
         console.error("Error fetching posts:", err);
       }
+      finally{
+        setLoading(false)
+      }
     };
     getPayloads();
-  }, [currentPage]);
-  if (posts.length === 0) return <p>Loading Payloads...</p>;
-  return (
+  }, [currentPage, payloadFilter, search]);
+   return (
     <>
+    <Search placeholder={"Search Payloads..."} /> 
+     <Filter>
+   
+
+      <select
+        value={payloadFilter.orbit}
+        onChange={(e) => setPayloadFilter((prev) => ({ ...prev, orbit:e.target.value }))}
+      >
+        <option value="">All</option>
+        <option value="LEO">LEO</option>
+        <option value="ISS">ISS</option>
+        <option value="PO">PO</option>
+        <option value="GTO">GTO</option>
+        <option value="ES-L1">ES-L1</option>
+        <option value="SSO">SSO</option>
+        <option value="HCO">HCO</option>
+        <option value="HEO">HEO</option>
+        <option value="MEO">MEO</option>
+        <option value="VLEO">VLEO</option>
+        <option value="SO">SO</option>
+        <option value="GEO">GEO</option>
+        <option value="TLI">TLI</option>
+        <option value="BEO">BEO</option>
+        <option value="null">Unknown</option>
+      </select>
+      <select
+        value={payloadFilter.reused}
+        onChange={(e) => setPayloadFilter((prev) => ({ ...prev, reused:e.target.value }))}
+      >
+        <option value="">All</option>
+        <option value="true">Reused</option>
+        <option value="false">Not Reused</option>
+        
+      </select>
+      <select
+        value={payloadFilter.type}
+        onChange={(e) => setPayloadFilter((prev) => ({ ...prev, type:e.target.value }))}
+      >
+        <option value="">All</option>
+        <option value="Satellite">Satellite</option>
+        <option value="Dragon Boilerplate">Dragon Boilerplate</option>
+        <option value="Dragon 1.0">Dragon 1.0</option>
+        <option value="Dragon 1.1">Dragon 1.1</option>
+        <option value="Lander">Lander</option>
+        <option value="Crew Dragon">Crew Dragon</option>
+        <option value="Dragon 2.0">Dragon 2.0</option>
+      </select>
+    </Filter>
+    {loading ? (<p>Loading Payloads..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+ <>
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -98,6 +163,10 @@ const Payloads = () => {
         )}
       </div>
     </>
+
+    )}
+    </>
+   
   );
 };
 

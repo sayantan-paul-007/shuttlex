@@ -4,12 +4,18 @@ import Card from "../components/Card";
 const Dragons = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("https://api.spacexdata.com/v4/dragons")
-      .then((res) => res.json())
-      .then((data) => setPosts(data))
-      .catch((err) => console.error("Error fetching posts:", err));
+    const getDragons = async () => {
+      try{
+        const res = await fetch("https://api.spacexdata.com/v4/dragons")
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    };
+    getDragons();
   }, []);
-  if (posts.length === 0) return <p>Loading Dragons...</p>;
+  if(posts.length === 0) return <p>Loading Dragons...</p>;
 
   return (
     <>

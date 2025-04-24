@@ -4,12 +4,18 @@ import Card from "../components/Card";
 
 const Landpads = () => {
   const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch("https://api.spacexdata.com/v4/landpads")
-      .then((res) => res.json())
-      .then((data) => setPosts(data))
-      .catch((err) => console.error("Error fetching posts:", err));
-  }, []);
+ useEffect(() => {
+     const getLandpads = async () => {
+       try{
+         const res = await fetch("https://api.spacexdata.com/v4/landpads")
+         const data = await res.json();
+         setPosts(data);
+       } catch (err) {
+         console.error("Error fetching posts:", err);
+       }
+     };
+     getLandpads();
+   }, []);
   if (posts.length === 0) return <p>Loading Landpads...</p>;
 
   return (

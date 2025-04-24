@@ -3,8 +3,11 @@ import Grid from "../components/Grid";
 import Card from "../components/Card";
 import Filter from "../components/Filter";
 import { FilterContext } from "../context/FilterContext";
+import Search from "../components/Search";
+import { SearchContext } from "../context/SearchContext";
 const Capsules = () => {
   const {capsuleFilter, setCapsuleFilter} = useContext(FilterContext)
+  const {search} =useContext(SearchContext)
   const [loading, setLoading] =useState(true)
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,10 +28,11 @@ const Capsules = () => {
             },
             body: JSON.stringify({
               query: { ...(capsuleFilter.status && { status: capsuleFilter.status }),
-              ...(capsuleFilter.reuse_count && { reuse_count: capsuleFilter.reuse_count })},
+              ...(capsuleFilter.reuse_count && { reuse_count: capsuleFilter.reuse_count }),
+              ...(search && { serial: { $regex: search, $options: "i" } })},
               options: {
-                page: currentPage, // change this dynamically
-                limit: itemsPerPage, // number of items per page
+                page: currentPage, 
+                limit: itemsPerPage, 
               },
             }),
           }
@@ -44,13 +48,13 @@ const Capsules = () => {
       }
     };
     getCapsules();
-  }, [currentPage, capsuleFilter]);
-  if (loading) return <p>Loading Capsules...</p>; // optional if you want a loading fallback
-
-if (posts.length === 0) return <p className="text-center text-gray-500 text-lg">No data found.</p>;
+    setCurrentPage(1);
+  }, [currentPage, capsuleFilter, search]);
+ 
  
   return (
     <>
+    <Search placeholder={"Search Capsules..."} />
     <Filter>
     <select
         value={capsuleFilter.status}
@@ -72,6 +76,7 @@ if (posts.length === 0) return <p className="text-center text-gray-500 text-lg">
         <option value="2">2</option>
       </select>
     </Filter>
+      {loading ? (<p>Loading Capsules...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(<>
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -111,6 +116,8 @@ if (posts.length === 0) return <p className="text-center text-gray-500 text-lg">
           </button>
         ))}
       </div>
+      </>)}
+      
     </>
   );
 };

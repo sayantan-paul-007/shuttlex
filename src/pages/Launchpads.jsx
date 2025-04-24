@@ -4,11 +4,17 @@ import Card from "../components/Card";
 const Launchposts = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("https://api.spacexdata.com/v4/launchpads")
-      .then((res) => res.json())
-      .then((data) => setPosts(data))
-      .catch((err) => console.error("Error fetching posts:", err));
-  }, []);
+      const getLaunchpads = async () => {
+        try{
+          const res = await fetch("https://api.spacexdata.com/v4/launchpads")
+          const data = await res.json();
+          setPosts(data);
+        } catch (err) {
+          console.error("Error fetching posts:", err);
+        }
+      };
+      getLaunchpads();
+    }, []);
   if (posts.length === 0) return <p>Loading Launchpads...</p>;
 
   return (

@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "../components/Grid";
 import Card from "../components/Card";
+import Search from "../components/Search";
+import { SearchContext } from "../context/SearchContext";
+import { FilterContext } from "../context/FilterContext";
+import Filter from "../components/Filter";
 const Launches = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const [totalPages, setTotalPages] = useState(1);
+  const {search} = useContext(SearchContext)
+  const {launchFilter, setLaunchFilter} = useContext(FilterContext)
+  const [loading, setLoading] =useState(true)
   useEffect(() => {
     const getPayloads = async () => {
       try {
+        setLoading(true)
         const res = await fetch(
           "https://api.spacexdata.com/v4/launches/query",
           {
@@ -17,10 +25,13 @@ const Launches = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              query: {},
+              query: {
+                ...(launchFilter.success && { success: launchFilter.success }),
+                ...(search && { name: { $regex: search, $options: "i" } })
+              },
               options: {
-                page: currentPage, // change this dynamically
-                limit: itemsPerPage, // number of items per page
+                page: currentPage, 
+                limit: itemsPerPage,
               },
             }),
           }
@@ -31,13 +42,30 @@ const Launches = () => {
       } catch (err) {
         console.error("Error fetching posts:", err);
       }
+      finally{
+        setLoading(false)
+      }
     };
     getPayloads();
-  }, [currentPage]);
-  if (posts.length === 0) return <p>Loading Launches...</p>;
+  }, [currentPage, launchFilter, search]);
 
   return (
     <>
+    <Search placeholder={"Search Launches..."} /> 
+     <Filter>
+   
+
+      <select
+        value={launchFilter.success}
+        onChange={(e) => setLaunchFilter((prev) => ({ ...prev, success:e.target.value }))}
+      >
+        <option value="">All</option>
+        <option value="true">Success</option>
+        <option value="false">Failed</option>
+      </select>
+    </Filter>
+    {loading ? (<p>Loading Launches...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+       <>
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -108,6 +136,9 @@ const Launches = () => {
         )}
       </div>
     </>
+    )}
+    </>
+   
   );
 };
 
