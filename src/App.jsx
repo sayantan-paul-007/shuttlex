@@ -14,7 +14,7 @@ import Ships from "./pages/Ships";
 import Starlink from "./pages/Starlink";
 import Launches from "./pages/Launches";
 import Hero from "./components/Hero";
-
+import NotFound from "./pages/NotFound";
 function App() {
   return (
     <>
@@ -33,6 +33,7 @@ function App() {
           <Route path="/rockets" element={<Rockets />} />
           <Route path="/ships" element={<Ships />} />
           <Route path="/starlink" element={<Starlink />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
