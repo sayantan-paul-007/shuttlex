@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Grid from "../components/Grid";
 import Card from "../components/Card";
+import Filter from "../components/Filter";
+import { FilterContext } from "../context/FilterContext";
 const Capsules = () => {
+  const {capsuleFilter, setCapsuleFilter} = useContext(FilterContext)
+  const [loading, setLoading] =useState(true)
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
+    
     const getCapsules = async () => {
       try {
+        setLoading(true);
         const res = await fetch(
           "https://api.spacexdata.com/v4/capsules/query",
           {
@@ -17,7 +24,8 @@ const Capsules = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              query: {},
+              query: { ...(capsuleFilter.status && { status: capsuleFilter.status }),
+              ...(capsuleFilter.reuse_count && { reuse_count: capsuleFilter.reuse_count })},
               options: {
                 page: currentPage, // change this dynamically
                 limit: itemsPerPage, // number of items per page
@@ -31,12 +39,39 @@ const Capsules = () => {
       } catch (err) {
         console.error("Error fetching posts:", err);
       }
+      finally{
+        setLoading(false);
+      }
     };
     getCapsules();
-  }, [currentPage]);
-  if (posts.length === 0) return <p>Loading Capsules...</p>;
+  }, [currentPage, capsuleFilter]);
+  if (loading) return <p>Loading Capsules...</p>; // optional if you want a loading fallback
+
+if (posts.length === 0) return <p className="text-center text-gray-500 text-lg">No data found.</p>;
+ 
   return (
     <>
+    <Filter>
+    <select
+        value={capsuleFilter.status}
+        onChange={(e) => setCapsuleFilter((prev) => ({ ...prev, status: e.target.value }))}
+      >
+        <option value=""></option>
+        <option value="active">Active</option>
+        <option value="retired">Retired</option>
+       
+      </select>
+
+      <select
+        value={capsuleFilter.reuse_count}
+        onChange={(e) => setCapsuleFilter((prev) => ({ ...prev, reuse_count:Number(e.target.value) }))}
+      >
+        <option value="">All</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+    </Filter>
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
