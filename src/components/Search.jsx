@@ -4,13 +4,16 @@ import { SearchContext } from '../context/SearchContext'
 const Search = ({placeholder}) => {
     const {search, setSearch} = useContext(SearchContext)
   return (
-    <input
+    <div className='bg-black'>
+      <input
     type="text"
     placeholder={placeholder}
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    className="border p-2 rounded"
+    className="border p-2 rounded bg-black"
   />
+    </div>
+    
   )
 }
 

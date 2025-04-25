@@ -56,7 +56,7 @@ const Payloads = () => {
      <Filter>
    
 
-      <select
+      <select className="bg-black"
         value={payloadFilter.orbit}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, orbit:e.target.value }))}
       >
@@ -77,7 +77,7 @@ const Payloads = () => {
         <option value="BEO">BEO</option>
         <option value="null">Unknown</option>
       </select>
-      <select
+      <select className="bg-black"
         value={payloadFilter.reused}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, reused:e.target.value }))}
       >
@@ -86,7 +86,7 @@ const Payloads = () => {
         <option value="false">Not Reused</option>
         
       </select>
-      <select
+      <select className="bg-black"
         value={payloadFilter.type}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, type:e.target.value }))}
       >
@@ -114,7 +114,7 @@ const Payloads = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center pt-4 space-x-2 bg-black">
         {/* First Button */}
         {currentPage > 3 && (
           <button

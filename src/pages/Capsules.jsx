@@ -56,7 +56,7 @@ const Capsules = () => {
     <>
     <Search placeholder={"Search Capsules..."} />
     <Filter>
-    <select
+    <select className="bg-black"
         value={capsuleFilter.status}
         onChange={(e) => setCapsuleFilter((prev) => ({ ...prev, status: e.target.value }))}
       >
@@ -66,7 +66,7 @@ const Capsules = () => {
        
       </select>
 
-      <select
+      <select className="bg-black"
         value={capsuleFilter.reuse_count}
         onChange={(e) => setCapsuleFilter((prev) => ({ ...prev, reuse_count:Number(e.target.value) }))}
       >
@@ -76,7 +76,7 @@ const Capsules = () => {
         <option value="2">2</option>
       </select>
     </Filter>
-      {loading ? (<p>Loading Capsules...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(<>
+      {loading ? (<p className="bg-black">Loading Capsules...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(<>
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -101,7 +101,7 @@ const Capsules = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center pt-4 space-x-2 bg-black">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}

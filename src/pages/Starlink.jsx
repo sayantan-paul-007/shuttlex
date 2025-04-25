@@ -57,7 +57,7 @@ const Starlink = () => {
      <Filter>
    
 
-      <select
+      <select className="bg-black"
         value={starlinkFilter.rcs_size}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, rcs_size:e.target.value }))}
       >
@@ -66,7 +66,7 @@ const Starlink = () => {
         <option value="MEDIUM">Medium</option>
         <option value="null">Unknown</option>
       </select>
-      <select
+      <select className="bg-black"
         value={starlinkFilter.site}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, site:e.target.value }))}
       >
@@ -75,7 +75,7 @@ const Starlink = () => {
         <option value="AFWTR">AFTWR</option>
         <option value="null">Unknown</option>
       </select>
-      <select
+      <select className="bg-black"
         value={starlinkFilter.decay}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, decay:e.target.value }))}
       >
@@ -84,7 +84,7 @@ const Starlink = () => {
         <option value="1">Deorbited</option>
       </select>
     </Filter>
-    {loading ? (<p>Loading Starlinks..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black">Loading Starlinks..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (
@@ -112,7 +112,7 @@ const Starlink = () => {
         ))}
       </Grid>
 
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center pt-4 space-x-2 bg-black">
         {/* First Button */}
         {currentPage > 3 && (
           <button

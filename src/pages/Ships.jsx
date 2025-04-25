@@ -53,7 +53,7 @@ const Ships = () => {
      <Filter>
    
 
-      <select
+      <select className="bg-black"
         value={shipFilter.type}
         onChange={(e) => setShipFilter((prev) => ({ ...prev, type:e.target.value }))}
       >
@@ -63,7 +63,7 @@ const Ships = () => {
         <option value="Barge">Barge</option>
         <option value="High Speed Craft">High Speed Craft</option>
       </select>
-      <select
+      <select className="bg-black"
         value={shipFilter.active}
         onChange={(e) => setShipFilter((prev) => ({ ...prev, active:e.target.value }))}
       >
@@ -74,7 +74,7 @@ const Ships = () => {
       </select>
      
     </Filter>
-    {loading ? (<p>Loading Ships..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black">Loading Ships..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (
@@ -99,7 +99,7 @@ const Ships = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center pt-4 space-x-2 bg-black">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}

@@ -15,7 +15,7 @@ const Launchposts = () => {
       };
       getLaunchpads();
     }, []);
-  if (posts.length === 0) return <p>Loading Launchpads...</p>;
+  if (posts.length === 0) return <p className="bg-black">Loading Launchpads...</p>;
 
   return (
     <>

@@ -55,7 +55,7 @@ const Launches = () => {
      <Filter>
    
 
-      <select
+      <select className="bg-black"
         value={launchFilter.success}
         onChange={(e) => setLaunchFilter((prev) => ({ ...prev, success:e.target.value }))}
       >
@@ -87,7 +87,7 @@ const Launches = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center mt-4 bg-black space-x-2">
         {/* First Button */}
         {currentPage > 3 && (
           <button

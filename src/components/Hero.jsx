@@ -1,8 +1,17 @@
 import React from 'react'
-
+import Logo from '../assets/logo.svg'
 const Hero = () => {
   return (
-    <div>Hero</div>
+    <section className='bg-black px-28 text-white h-screen'>
+      <div>
+        <img src={Logo} className='aspect-square h-32' alt="" />
+      </div>
+      <h1 className='text-5xl'>
+        SHUTTLEX - The mini SpaceX
+      </h1>
+      <p>The ultimate guide of SpaceX missions</p>
+      <button className='burr'>explore more</button>
+    </section>
   )
 }
 

@@ -52,7 +52,7 @@ const Crew = () => {
      <Filter>
    
 
-      <select
+      <select className="bg-black"
         value={crewFilter.agency}
         onChange={(e) => setCrewFilter((prev) => ({ ...prev, agency:e.target.value }))}
       >
@@ -65,7 +65,7 @@ const Crew = () => {
         <option value="5">5</option>
       </select>
     </Filter>
-    {loading ? (<p>Loading Crew...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black">Loading Crew...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
  <>
       <Grid>
         {posts.map((post, index) => (
@@ -81,7 +81,7 @@ const Crew = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center pt-4 bg-black space-x-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}

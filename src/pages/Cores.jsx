@@ -52,7 +52,7 @@ const Cores = () => {
     <>
      <Search placeholder={"Search Cores..."} /> 
      <Filter>
-    <select
+    <select className="bg-black"
         value={coresFilter.status}
         onChange={(e) => setCoresFilter((prev) => ({ ...prev, status: e.target.value }))}
       >
@@ -65,7 +65,7 @@ const Cores = () => {
        
       </select>
 
-      <select
+      <select className="bg-black"
         value={coresFilter.block}
         onChange={(e) => setCoresFilter((prev) => ({ ...prev, block:Number(e.target.value) }))}
       >
@@ -78,7 +78,7 @@ const Cores = () => {
         <option value="5">5</option>
       </select>
     </Filter>
-    {loading ? (<p>Loading Cores...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black">Loading Cores...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
     <>
       <Grid>
         {posts.map((post, index) => (
@@ -102,7 +102,7 @@ const Cores = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center pt-4 space-x-2 bg-black">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
