@@ -1,8 +1,5 @@
 import React from 'react'
 import Logo from '../assets/logo.svg'
-import SatelliteCard from './SatelliteCard'
-import ShipCard from './ShipCard'
-import StataliteCard from './StataliteCard'
 const Hero = () => {
   return (
     <section className='bg-black px-28 text-white h-max'>
