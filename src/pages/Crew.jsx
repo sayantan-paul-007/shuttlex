@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
-import { IoMdInformationCircle } from "react-icons/io";
 import Grid from "../components/Grid";
 import Card from "../components/Card";
 import Search from "../components/Search";

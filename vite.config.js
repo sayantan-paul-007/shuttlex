@@ -8,5 +8,8 @@ export default defineConfig({
     rollupOptions: {
       external: ['react-icons/fa']
     }
+  },
+  optimizeDeps: {
+    include: ['react-icons/fa']
   }
 })
