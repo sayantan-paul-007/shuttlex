@@ -64,7 +64,7 @@ const Launches = () => {
         <option value="false">Failed</option>
       </select>
     </Filter>
-    {loading ? (<p>Loading Launches...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black text-white">Loading Launches...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (

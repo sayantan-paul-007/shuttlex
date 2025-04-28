@@ -100,7 +100,7 @@ const Payloads = () => {
         <option value="Dragon 2.0">Dragon 2.0</option>
       </select>
     </Filter>
-    {loading ? (<p>Loading Payloads..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black text-white">Loading Payloads..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
  <>
       <Grid>
         {posts.map((post, index) => (

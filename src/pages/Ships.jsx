@@ -74,7 +74,7 @@ const Ships = () => {
       </select>
      
     </Filter>
-    {loading ? (<p className="bg-black">Loading Ships..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className="bg-black text-white">Loading Ships..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (

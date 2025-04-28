@@ -18,8 +18,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className='w-full bg-black text-white'>
-      <ul className='flex flex-row flex-wrap gap-2'>
+    <nav className='text-white basis-[20%] '>
+      <ul className='flex flex-col flex-wrap gap-2'>
         {navItems.map(item => (
           <li key={item.path}>
             <Link to={item.path}>

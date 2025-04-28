@@ -53,7 +53,6 @@ const Capsules = () => {
       }
     };
     getCapsules();
-    setCurrentPage(1);
   }, [currentPage, capsuleFilter, search]);
 
   return (
@@ -116,22 +115,22 @@ const Capsules = () => {
                     />
                   ))}
                 </div>
-                {/* Header with mission patch styling */}
+               
                 <div className=" bg-gradient-to-r from-gray-800/40 to-gray-700/40 p-4 border-b border-gray-600">
                   <div className="flex items-center">
                     <div>
                       <h2 className="text-2xl font-bold text-white tracking-wider">
-                        {post.serial}
+                        {post.serial} ({post.type})
                       </h2>
                       <div className="flex items-center text-md mt-2 font-semibold text-gray-400">
-                      {post.type}
+                      
+                      Number of Launches: {post.launches.length}
                      
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-5 relative z-10">
                   <div className="flex items-center mb-4">
                     <div
@@ -188,7 +187,10 @@ const Capsules = () => {
               </Card>
             ))}
           </Grid>
-          <div className="flex justify-center pt-4 space-x-2 bg-black">
+         
+        </>
+      )}
+       <div className="flex justify-center pt-4 space-x-2 bg-black">
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index + 1}
@@ -203,8 +205,6 @@ const Capsules = () => {
               </button>
             ))}
           </div>
-        </>
-      )}
     </>
   );
 };

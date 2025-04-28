@@ -16,7 +16,7 @@ const Landpads = () => {
      };
      getLandpads();
    }, []);
-  if (posts.length === 0) return <p className="bg-black">Loading Landpads...</p>;
+  if (posts.length === 0) return <p className="bg-black text-white">Loading Landpads...</p>;
 
   return (
     <>

@@ -15,10 +15,10 @@ const Launchposts = () => {
       };
       getLaunchpads();
     }, []);
-  if (posts.length === 0) return <p className="bg-black">Loading Launchpads...</p>;
+  if (posts.length === 0) return <p className="bg-black text-white">Loading Launchpads...</p>;
 
   return (
-    <>
+    <section className="bg-black">
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -38,7 +38,7 @@ const Launchposts = () => {
           </Card>
         ))}
       </Grid>
-    </>
+    </section>
   );
 };
 

@@ -84,7 +84,8 @@ const Starlink = () => {
         <option value="1">Deorbited</option>
       </select>
     </Filter>
-    {loading ? (<p className="bg-black">Loading Starlinks..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+ 
+    {loading ? (<p className="bg-black text-white">Loading Starlinks..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (

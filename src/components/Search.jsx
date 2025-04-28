@@ -4,7 +4,7 @@ import { SearchContext } from '../context/SearchContext'
 const Search = ({placeholder}) => {
     const {search, setSearch} = useContext(SearchContext)
   return (
-    <div className='bg-black'>
+    <div >
       <input
     type="text"
     placeholder={placeholder}

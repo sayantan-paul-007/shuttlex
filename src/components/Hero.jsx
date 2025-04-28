@@ -1,16 +1,22 @@
 import React from 'react'
 import Logo from '../assets/logo.svg'
+import SatelliteCard from './SatelliteCard'
+import ShipCard from './ShipCard'
+import StataliteCard from './StataliteCard'
 const Hero = () => {
   return (
-    <section className='bg-black px-28 text-white h-screen'>
+    <section className='bg-black px-28 text-white h-max'>
       <div>
         <img src={Logo} className='aspect-square h-32' alt="" />
       </div>
-      <h1 className='text-5xl'>
+      <h1 className='text-5xl font-headingFont'>
         SHUTTLEX - The mini SpaceX
       </h1>
       <p>The ultimate guide of SpaceX missions</p>
       <button className='burr'>explore more</button>
+      <SatelliteCard />
+      <ShipCard />
+      <StataliteCard />
     </section>
   )
 }
