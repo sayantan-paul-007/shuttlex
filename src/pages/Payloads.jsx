@@ -28,7 +28,6 @@ const Payloads = () => {
               query: {
                 ...(payloadFilter.type && { type: payloadFilter.type }),
                 ...(payloadFilter.orbit && { orbit: payloadFilter.orbit }),
-                ...(payloadFilter.reused && { reused: payloadFilter.reused }),
               ...(search && { name: { $regex: search, $options: "i" } })
               },
               options: {
@@ -77,15 +76,7 @@ const Payloads = () => {
         <option value="BEO">BEO</option>
         <option value="null">Unknown</option>
       </select>
-      <select className="bg-black"
-        value={payloadFilter.reused}
-        onChange={(e) => setPayloadFilter((prev) => ({ ...prev, reused:e.target.value }))}
-      >
-        <option value="">All</option>
-        <option value="true">Reused</option>
-        <option value="false">Not Reused</option>
-        
-      </select>
+     
       <select className="bg-black"
         value={payloadFilter.type}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, type:e.target.value }))}

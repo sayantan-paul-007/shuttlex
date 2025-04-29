@@ -18,7 +18,6 @@ export const FilterProvider = ({children}) => {
   const [payloadFilter, setPayloadFilter]=useState({
     'type':'',
     'orbit':'',
-    'reused':''
   })
 const [shipFilter, setShipFilter] = useState({
    'type':'',
