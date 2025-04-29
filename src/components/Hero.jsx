@@ -11,9 +11,6 @@ const Hero = () => {
       </h1>
       <p>The ultimate guide of SpaceX missions</p>
       <button className='burr'>explore more</button>
-      <SatelliteCard />
-      <ShipCard />
-      <StataliteCard />
     </section>
   )
 }
