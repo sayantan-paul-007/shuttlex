@@ -10,6 +10,6 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['react-icons/fa']
+    include: ['./node_modules/react-icons/fa','./node_modules/react-icons/io']
   }
 })
