@@ -96,16 +96,61 @@ const Payloads = () => {
       <Grid>
         {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
-            <h2 className="text-xl font-bold mt-2">{post.name}</h2>
-            <p className="text-sm text-gray-400">Type:{post.type}</p>
-            <p>{post.customers.map((custom) => custom)}</p>
-            <p>{post.nationalities.map((nation) => nation)}</p>
-            <p>Orbit:{post.orbit}</p>
-            <p>Mass: {post.mass_kg === null ? "unknown" : post.mass_kg} kg</p>
+            <div className=" bg-gradient-to-r from-gray-800/40 to-gray-700/40 p-4 border-b border-gray-600">
+                  <div className="flex items-center">
+                    <div>
+                      <h2 className="text-2xl font-bold text-white tracking-wider">
+                        {post.name} 
+                      </h2>
+                      <div className="flex items-center text-md mt-2 font-semibold text-gray-400">
+                      
+                      {post.manufacturers.map(manufact=>manufact)}  {post.nationalities.map(nation=>nation)}
+                     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 relative z-10">
+                 
+                   <div className="grid grid-cols-2 gap-4 ">
+                   <div>
+                          <p className="text-gray-300">Type</p>
+                          <p className="font-semibold">{post.type}</p>
+                        </div>                       
+                                    <div>
+                          <p className="text-gray-300">Customers</p>
+                          <p className="font-semibold"> {post.customers.map(customer=>customer)}</p>
+                        </div>
+                        
+                        <div>
+                          <p className="text-gray-300">Mass</p>
+                          <p className="font-semibold">{post.mass_kg && post.mass_lbs!=null?`${post.mass_kg} kg (${post.mass_lbs} lb)`:"-"}   </p>
+                        </div>
+                        <div>
+                          <p className="text-gray-300">Orbit</p>
+                          <p className="font-semibold">{post.orbit}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-300">Periapsis</p>
+                          <p className="font-semibold">{post.periapsis_km !=null?`${post.periapsis_km} km`:"-"}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-300">Apoapsis</p>
+                          <p className="font-semibold">{post.apoapsis_km !=null?`${post.apoapsis_km} km`:"-"}</p>
+                        </div>
+                  </div>
+                  
+                </div> 
+               
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center pt-4 space-x-2 bg-black">
+     
+    </>
+
+    )}
+     <div className="flex justify-center pt-4 space-x-2 bg-black">
         {/* First Button */}
         {currentPage > 3 && (
           <button
@@ -153,9 +198,6 @@ const Payloads = () => {
           </button>
         )}
       </div>
-    </>
-
-    )}
     </>
    
   );
