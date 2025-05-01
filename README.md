@@ -2,7 +2,7 @@
 
 **Shuttlex** is a modern React-based web application that visualizes data from the official [SpaceX API](https://github.com/r-spacex/SpaceX-API). It offers an elegant user interface, powerful search and filter features, and categorized access to all major resources such as Capsules, Cores, Crew, Rockets, Launches, and more.
 
-![Shuttlex Logo](.src/assets/logo.svg)
+![Shuttlex Logo](./src/assets/logo.svg)
 
 ---
 
