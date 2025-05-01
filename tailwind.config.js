@@ -17,6 +17,9 @@ export default {
         '100%': { opacity: '1', transform: 'scale(1)' },
       },
     },
+    backgroundImage: {
+      'hero-img': "url('https://images.pexels.com/photos/23764/pexels-photo.jpg')",
+    },
     screens: {
       'mobile-small': '360px',    // Small smartphones
       'mobile': '640px',          // Standard smartphones
@@ -25,7 +28,8 @@ export default {
       'desktop': '1280px',        // Standard laptops and desktops
       'desktop-large': '1536px',  // Large monitors
       'desktop-xl': '1920px',     // Ultra HD / 4K displays
-      'desktop-4k': '2560px'      // Professional monitors / Super ultrawide
+      'desktop-2k': '2560px',     // Ultra HD / 4K displays
+      'desktop-4k': '3840px'        // Professional monitors / Super ultrawide
       },
       container: {
         center: true,

@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <nav className='text-white basis-[20%] text-sm  desktop:basis-[15%] '>
-      <ul className='flex flex-row justify-center desktop:flex-col desktop:text-md desktop-xl:text-lg py-4 px-3 flex-wrap gap-2'>
+      <ul className='flex flex-row justify-center desktop:flex-col desktop:text-md desktop-xl:text-lg desktop-2k:text-2xl py-4 px-3 flex-wrap gap-2'>
         {navItems.map(item => (
           <li className={`${
                   location.pathname === item.path

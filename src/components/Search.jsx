@@ -10,7 +10,7 @@ const Search = ({placeholder}) => {
     placeholder={placeholder}
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    className="border w-full mobile:w-[80%]  p-2 m-2 laptop:m-0 rounded bg-[#0F1112] text-white"
+    className="border w-full mobile:w-[80%]  p-2 m-2 laptop:m-0 rounded bg-[#0F1112] desktop-2k:text-2xl text-white"
   />
     </div>
     

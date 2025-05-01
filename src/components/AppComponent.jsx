@@ -15,8 +15,8 @@ import Starlink from "../pages/Starlink";
 import NotFound from "../pages/NotFound";
 const AppComponent = () => {
   return (
-   <section className=' px-4 mobile:px-5 tablet:px-6 laptop:px-8 desktop:px-12 desktop-large:px-16 desktop-xl:px-24 desktop-4k:px-28 '>
-   <div className=' flex flex-col  desktop:flex-row container'>
+   <section id="main-content" className=' px-4 py-12 mobile:px-5 tablet:px-6 laptop:px-8 desktop:px-12  desktop-xl:px-24 desktop-2k:px-28 desktop-4k:px-32 '>
+   <div className=' flex flex-col justify-between w-full font-body desktop:flex-row container'>
     
    
    <Navbar />

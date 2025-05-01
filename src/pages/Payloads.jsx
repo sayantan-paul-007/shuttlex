@@ -51,12 +51,12 @@ const Payloads = () => {
   }, [currentPage, payloadFilter, search]);
    return (
     <>
-    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4 desktop-2k:py-8">
     <Search placeholder={"Search Payloads..."} /> 
      <Filter>
    
 
-      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl"
         value={payloadFilter.orbit}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, orbit:e.target.value }))}
       >
@@ -78,7 +78,7 @@ const Payloads = () => {
         <option value="null">Unknown</option>
       </select>
      
-      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl"
         value={payloadFilter.type}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, type:e.target.value }))}
       >
@@ -101,7 +101,7 @@ const Payloads = () => {
             <div className=" bg-gradient-to-r from-gray-800/40 to-gray-700/40 p-4 border-b border-gray-600">
                   <div className="flex items-center">
                     <div>
-                      <h2 className="text-2xl font-bold text-white tracking-wider">
+                      <h2 className="text-xl font-bold text-white tracking-wider">
                         {post.name} 
                       </h2>
                       <div className="flex items-center text-md mt-2 font-semibold text-gray-400">
