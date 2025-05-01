@@ -58,7 +58,7 @@ const Starlink = () => {
      <Filter>
    
 
-      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md  "
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl  "
         value={starlinkFilter.rcs_size}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, rcs_size:e.target.value }))}
       >

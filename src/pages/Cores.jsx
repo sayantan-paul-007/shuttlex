@@ -52,7 +52,7 @@ const Cores = () => {
     <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
      <Search placeholder={"Search Cores..."} /> 
      <Filter>
-    <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
+    <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl "
         value={coresFilter.status}
         onChange={(e) => setCoresFilter((prev) => ({ ...prev, status: e.target.value }))}
       >

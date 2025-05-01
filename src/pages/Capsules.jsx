@@ -28,9 +28,6 @@ const Capsules = () => {
             body: JSON.stringify({
               query: {
                 ...(capsuleFilter.status && { status: capsuleFilter.status }),
-                ...(capsuleFilter.reuse_count && {
-                  reuse_count: capsuleFilter.reuse_count,
-                }),
                 ...(search && { serial: { $regex: search, $options: "i" } }),
               },
               options: {
@@ -58,7 +55,7 @@ const Capsules = () => {
       <Search placeholder={"Search Capsules..."} />
       <Filter>
         <select
-          className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
+          className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl "
           value={capsuleFilter.status}
           onChange={(e) =>
             setCapsuleFilter((prev) => ({ ...prev, status: e.target.value }))
@@ -69,21 +66,7 @@ const Capsules = () => {
           <option value="retired">Retired</option>
         </select>
 
-        <select
-          className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
-          value={capsuleFilter.reuse_count}
-          onChange={(e) =>
-            setCapsuleFilter((prev) => ({
-              ...prev,
-              reuse_count: Number(e.target.value),
-            }))
-          }
-        >
-          <option value="">-- Select Reuse Count --</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
+        
       </Filter>
       </div>
       {loading ? (

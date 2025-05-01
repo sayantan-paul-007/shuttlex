@@ -54,7 +54,7 @@ const Ships = () => {
      <Filter>
    
 
-      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl "
         value={shipFilter.type}
         onChange={(e) => setShipFilter((prev) => ({ ...prev, type:e.target.value }))}
       >
@@ -64,7 +64,7 @@ const Ships = () => {
         <option value="Barge">Barge</option>
         <option value="High Speed Craft">High Speed Craft</option>
       </select>
-      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md desktop-2k:text-2xl "
         value={shipFilter.active}
         onChange={(e) => setShipFilter((prev) => ({ ...prev, active:e.target.value }))}
       >
