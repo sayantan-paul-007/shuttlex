@@ -53,39 +53,42 @@ const Starlink = () => {
   
   return (
     <>
-     <Search placeholder={"Search Starlinks..."} /> 
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
+      <Search placeholder={"Search Starlinks..."} /> 
      <Filter>
    
 
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md  "
         value={starlinkFilter.rcs_size}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, rcs_size:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select RCS Size --</option>
         <option value="LARGE">Large</option>
         <option value="MEDIUM">Medium</option>
         <option value="null">Unknown</option>
       </select>
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white border border-slate-400 p-2 rounded-md"
         value={starlinkFilter.site}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, site:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Site --</option>
         <option value="AFETR">AFETR</option>
         <option value="AFWTR">AFTWR</option>
         <option value="null">Unknown</option>
       </select>
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white border border-slate-400 p-2 rounded-md"
         value={starlinkFilter.decay}
         onChange={(e) => setStarlinkFilter((prev) => ({ ...prev, decay:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Status --</option>
         <option value="0">Active</option>
         <option value="1">Deorbited</option>
       </select>
     </Filter>
+    </div>
+     
  
-    {loading ? (<p className="bg-black text-white">Loading Starlinks..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    {loading ? (<p className=" text-white">Loading Starlinks..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (
@@ -173,11 +176,11 @@ const Starlink = () => {
         ))}
       </Grid>
 
-      <div className="flex justify-center pt-4 space-x-2 bg-black">
+      <div className="flex justify-center pt-4 space-x-2 ">
         {/* First Button */}
         {currentPage > 3 && (
           <button
-            className="px-3 py-1 rounded bg-gray-200"
+            className="px-3 py-1 rounded-full bg-transparent border border-cyan-700 text-white"
             onClick={() => setCurrentPage(1)}
           >
             1
@@ -185,7 +188,7 @@ const Starlink = () => {
         )}
 
         {/* Ellipsis for previous pages */}
-        {currentPage > 3 && <span className="px-3 py-1">...</span>}
+        {currentPage > 3 && <span className="px-3 py-1 text-white">...</span>}
 
         {/* Page Number Buttons */}
         {Array.from({ length: totalPages }, (_, index) => {
@@ -194,10 +197,10 @@ const Starlink = () => {
             return (
               <button
                 key={page}
-                className={`px-3 py-1 rounded ${
-                  currentPage === page
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200"
+                className={`px-3 py-1 rounded-full ${
+                  currentPage === index + 1
+                    ? "bg-cyan-700 text-white"
+                    : "bg-transparent border border-cyan-700 text-white"
                 }`}
                 onClick={() => setCurrentPage(page)}
               >
@@ -209,12 +212,12 @@ const Starlink = () => {
         })}
 
         {/* Ellipsis for next pages */}
-        {currentPage < totalPages - 2 && <span className="px-3 py-1">...</span>}
+        {currentPage < totalPages - 2 && <span className="px-3 py-1 text-white">...</span>}
 
         {/* Last Button */}
         {currentPage < totalPages - 2 && (
           <button
-            className="px-3 py-1 rounded bg-gray-200"
+            className="px-3 py-1 rounded-full bg-transparent border border-cyan-700 text-white"
             onClick={() => setCurrentPage(totalPages)}
           >
             {totalPages}

@@ -51,15 +51,16 @@ const Payloads = () => {
   }, [currentPage, payloadFilter, search]);
    return (
     <>
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
     <Search placeholder={"Search Payloads..."} /> 
      <Filter>
    
 
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
         value={payloadFilter.orbit}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, orbit:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Orbit --</option>
         <option value="LEO">LEO</option>
         <option value="ISS">ISS</option>
         <option value="PO">PO</option>
@@ -77,11 +78,11 @@ const Payloads = () => {
         <option value="null">Unknown</option>
       </select>
      
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
         value={payloadFilter.type}
         onChange={(e) => setPayloadFilter((prev) => ({ ...prev, type:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Type --</option>
         <option value="Satellite">Satellite</option>
         <option value="Dragon Boilerplate">Dragon Boilerplate</option>
         <option value="Dragon 1.0">Dragon 1.0</option>
@@ -91,7 +92,8 @@ const Payloads = () => {
         <option value="Dragon 2.0">Dragon 2.0</option>
       </select>
     </Filter>
-    {loading ? (<p className="bg-black text-white">Loading Payloads..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    </div>
+    {loading ? (<p className=" text-white">Loading Payloads..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
  <>
       <Grid>
         {posts.map((post, index) => (
@@ -150,11 +152,11 @@ const Payloads = () => {
     </>
 
     )}
-     <div className="flex justify-center pt-4 space-x-2 bg-black">
+     <div className="flex justify-center pt-4 space-x-2 ">
         {/* First Button */}
         {currentPage > 3 && (
           <button
-            className="px-3 py-1 rounded bg-gray-200"
+            className="px-3 py-1 rounded-full bg-transparent border border-cyan-700 text-white"
             onClick={() => setCurrentPage(1)}
           >
             1
@@ -162,7 +164,7 @@ const Payloads = () => {
         )}
 
         {/* Ellipsis for previous pages */}
-        {currentPage > 3 && <span className="px-3 py-1">...</span>}
+        {currentPage > 3 && <span className="px-3 py-1 text-white">...</span>}
 
         {/* Page Number Buttons */}
         {Array.from({ length: totalPages }, (_, index) => {
@@ -171,10 +173,10 @@ const Payloads = () => {
             return (
               <button
                 key={page}
-                className={`px-3 py-1 rounded ${
-                  currentPage === page
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200"
+                className={`px-3 py-1 rounded-full ${
+                  currentPage === index + 1
+                    ? "bg-cyan-700 text-white"
+                    : "bg-transparent border border-cyan-700 text-white"
                 }`}
                 onClick={() => setCurrentPage(page)}
               >
@@ -186,12 +188,12 @@ const Payloads = () => {
         })}
 
         {/* Ellipsis for next pages */}
-        {currentPage < totalPages - 2 && <span className="px-3 py-1">...</span>}
+        {currentPage < totalPages - 2 && <span className="px-3 py-1 text-white">...</span>}
 
         {/* Last Button */}
         {currentPage < totalPages - 2 && (
           <button
-            className="px-3 py-1 rounded bg-gray-200"
+            className="px-3 py-1 rounded-full bg-transparent border border-cyan-700 text-white"
             onClick={() => setCurrentPage(totalPages)}
           >
             {totalPages}

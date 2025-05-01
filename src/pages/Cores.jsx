@@ -49,13 +49,14 @@ const Cores = () => {
   }, [currentPage, coresFilter, search]);
    return (
     <>
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
      <Search placeholder={"Search Cores..."} /> 
      <Filter>
-    <select className="bg-black"
+    <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
         value={coresFilter.status}
         onChange={(e) => setCoresFilter((prev) => ({ ...prev, status: e.target.value }))}
       >
-        <option value=""></option>
+        <option value="">-- Select Status --</option>
         <option value="active">Active</option>
         <option value="lost">Lost</option>
         <option value="expended">Expended</option>
@@ -64,7 +65,8 @@ const Cores = () => {
        
       </select>
     </Filter>
-    {loading ? (<p className="bg-black text-white">Loading Cores...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    </div>
+    {loading ? (<p className=" text-white">Loading Cores...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
     <>
       <Grid>
         {posts.map((post, index) => (
@@ -123,7 +125,7 @@ const Cores = () => {
                                 
 
                                 <div className=" text-center rounded-lg p-3 border border-purple-400">
-                                  <div className="text-purple-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                                  <div className="text-purple-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                                   RTLS SUCCESS RATE 
                                   </div>
                                   <div className="text-white text-2xl font-bold">
@@ -132,7 +134,7 @@ const Cores = () => {
                                 </div>
 
                                 <div className=" text-center rounded-lg p-3 border border-orange-400">
-                                  <div className="text-orange-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                                  <div className="text-orange-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                                   ASDS SUCCESS RATE 
                                   </div>
                                   <div className="text-white text-2xl font-bold">
@@ -152,14 +154,14 @@ const Cores = () => {
       </Grid>
       
     </>)}
-    <div className="flex justify-center pt-4 bg-black space-x-2">
+    <div className="flex justify-center pt-4  space-x-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
-            className={`px-3 py-1 rounded ${
+            className={`px-3 py-1 rounded-full ${
               currentPage === index + 1
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200"
+                ? "bg-cyan-700 text-white"
+                : "bg-transparent border border-cyan-700 text-white"
             }`}
             onClick={() => setCurrentPage(index + 1)}
           >

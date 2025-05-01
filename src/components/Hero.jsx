@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../assets/logo.svg'
 const Hero = () => {
   return (
-    <section className='bg-black px-28 text-white h-max'>
+    <section className=' px-28 text-white h-max'>
       <div>
         <img src={Logo} className='aspect-square h-32' alt="" />
       </div>

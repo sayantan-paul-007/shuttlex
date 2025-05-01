@@ -17,7 +17,7 @@ const Landpads = () => {
     getLandpads();
   }, []);
   if (posts.length === 0)
-    return <p className="bg-black text-white">Loading Landpads...</p>;
+    return <p className=" text-white">Loading Landpads...</p>;
 
   return (
     <>
@@ -68,7 +68,7 @@ const Landpads = () => {
                                 
 
                                 <div className=" text-center rounded-lg p-3 border border-purple-400">
-                                  <div className="text-purple-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                                  <div className="text-purple-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                                  LAUNCHES 
                                   </div>
                                   <div className="text-white text-2xl font-bold">
@@ -78,7 +78,7 @@ const Landpads = () => {
                                 
 
                                 <div className=" text-center rounded-lg p-3 border border-orange-400">
-                                  <div className="text-orange-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                                  <div className="text-orange-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                                   LANDING SUCCESS RATE 
                                   </div>
                                   <div className="text-white text-2xl font-bold">

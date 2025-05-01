@@ -15,10 +15,10 @@ const Launchposts = () => {
       };
       getLaunchpads();
     }, []);
-  if (posts.length === 0) return <p className="bg-black text-white">Loading Launchpads...</p>;
+  if (posts.length === 0) return <p className=" text-white">Loading Launchpads...</p>;
 
   return (
-    <section className="bg-black">
+    <section className="">
       <Grid>
       {posts.map((post, index) => (
           <Card key={post.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -76,7 +76,7 @@ const Launchposts = () => {
                                 
 
                                 <div className=" text-center rounded-lg p-3 border border-purple-400">
-                                  <div className="text-purple-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                                  <div className="text-purple-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                                  LAUNCHES 
                                   </div>
                                   <div className="text-white text-2xl font-bold">
@@ -86,7 +86,7 @@ const Launchposts = () => {
                                 
 
                                 <div className=" text-center rounded-lg p-3 border border-orange-400">
-                                  <div className="text-orange-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                                  <div className="text-orange-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                                   LANDING SUCCESS RATE 
                                   </div>
                                   <div className="text-white text-2xl font-bold">

@@ -18,17 +18,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className='text-white basis-[20%] '>
-      <ul className='flex flex-col flex-wrap gap-2'>
+    <nav className='text-white basis-[20%] text-sm  desktop:basis-[15%] '>
+      <ul className='flex flex-row justify-center desktop:flex-col desktop:text-md desktop-xl:text-lg py-4 px-3 flex-wrap gap-2'>
         {navItems.map(item => (
-          <li key={item.path}>
+          <li className={`${
+                  location.pathname === item.path
+                    ? 'bg-cyan-700 text-white'
+                    : 'bg-transparent hover:outline hover:outline-cyan-400'
+                } rounded-lg p-3 transition duration-300 desktop:w-full`} key={item.path}>
             <Link to={item.path}>
               <button
-                className={`rounded-full p-4 transition duration-300 ${
-                  location.pathname === item.path
-                    ? 'bg-orange-300 text-white'
-                    : 'bg-transparent hover:bg-orange-100'
-                }`}
+                className={` `}
               >
                 {item.label}
               </button>

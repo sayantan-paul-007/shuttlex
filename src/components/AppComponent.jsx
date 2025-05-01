@@ -15,9 +15,12 @@ import Starlink from "../pages/Starlink";
 import NotFound from "../pages/NotFound";
 const AppComponent = () => {
   return (
-   <section className='bg-black w-full flex flex-row'>
+   <section className=' px-4 mobile:px-5 tablet:px-6 laptop:px-8 desktop:px-12 desktop-large:px-16 desktop-xl:px-24 desktop-4k:px-28 '>
+   <div className=' flex flex-col  desktop:flex-row container'>
+    
+   
    <Navbar />
-    <div className='basis-[80%]'>
+    <div className='basis-[80%] desktop:basis-[85%]'>
         <Routes>
           <Route path="/" element={<Capsules />} />
           <Route path="/cores" element={<Cores />} />
@@ -33,7 +36,7 @@ const AppComponent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
     </div>
-   
+   </div>
         
    </section>
   )

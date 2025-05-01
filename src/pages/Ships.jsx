@@ -49,32 +49,34 @@ const Ships = () => {
   
   return (
     <>
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
      <Search placeholder={"Search Ships..."} /> 
      <Filter>
    
 
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
         value={shipFilter.type}
         onChange={(e) => setShipFilter((prev) => ({ ...prev, type:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Type --</option>
         <option value="Tug">Tug</option>
         <option value="Cargo">Cargo</option>
         <option value="Barge">Barge</option>
         <option value="High Speed Craft">High Speed Craft</option>
       </select>
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
         value={shipFilter.active}
         onChange={(e) => setShipFilter((prev) => ({ ...prev, active:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Status --</option>
         <option value="true">Active</option>
         <option value="false">Retired</option>
         
       </select>
      
     </Filter>
-    {loading ? (<p className="bg-black text-white">Loading Ships..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    </div>
+    {loading ? (<p className=" text-white">Loading Ships..</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (
@@ -134,7 +136,7 @@ const Ships = () => {
       </div>
       <div>
         <p className="text-gray-300">Roles</p>
-        <p className="font-semibold">
+        <div className="font-semibold">
           <ul>
           {post.roles.map((role,index) => (        
             <li key={index}>{role}</li>
@@ -142,7 +144,7 @@ const Ships = () => {
         )
         )} 
         </ul>
-        </p>
+        </div>
       </div>
       
 
@@ -159,14 +161,14 @@ const Ships = () => {
           </Card>
         ))}
       </Grid>
-      <div className="flex justify-center pt-4 space-x-2 bg-black">
+      <div className="flex justify-center pt-4 space-x-2 ">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
-            className={`px-3 py-1 rounded ${
+            className={`px-3 py-1 rounded-full ${
               currentPage === index + 1
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200"
+                ? "bg-cyan-700 text-white"
+                : "bg-transparent border border-cyan-700 text-white"
             }`}
             onClick={() => setCurrentPage(index + 1)}
           >

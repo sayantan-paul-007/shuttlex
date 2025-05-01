@@ -10,7 +10,7 @@ const Rockets = () => {
       .then((data) => setPosts(data))
       .catch((err) => console.error("Error fetching posts:", err));
   }, []);
-  if (posts.length === 0) return <p className="bg-black text-white">Loading Rockets...</p>;
+  if (posts.length === 0) return <p className=" text-white">Loading Rockets...</p>;
 
   return (
     <>

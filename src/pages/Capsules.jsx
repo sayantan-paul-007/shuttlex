@@ -54,22 +54,23 @@ const Capsules = () => {
 
   return (
     <>
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
       <Search placeholder={"Search Capsules..."} />
       <Filter>
         <select
-          className="bg-black"
+          className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
           value={capsuleFilter.status}
           onChange={(e) =>
             setCapsuleFilter((prev) => ({ ...prev, status: e.target.value }))
           }
         >
-          <option value=""></option>
+          <option value="" >-- Select Status --</option>
           <option value="active">Active</option>
           <option value="retired">Retired</option>
         </select>
 
         <select
-          className="bg-black"
+          className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
           value={capsuleFilter.reuse_count}
           onChange={(e) =>
             setCapsuleFilter((prev) => ({
@@ -78,15 +79,15 @@ const Capsules = () => {
             }))
           }
         >
-          <option value="">All</option>
+          <option value="">-- Select Reuse Count --</option>
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
         </select>
       </Filter>
-
+      </div>
       {loading ? (
-        <p className="bg-black text-white">Loading Capsules...</p>
+        <p className=" text-white">Loading Capsules...</p>
       ) : posts.length === 0 ? (
         <p className="text-center text-gray-500 text-lg">No data found.</p>
       ) : (
@@ -148,7 +149,7 @@ const Capsules = () => {
 
                   <div className="grid grid-cols-2 gap-4 mt-5">
                     <div className=" text-center rounded-lg p-3 border border-blue-400">
-                      <div className="text-blue-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                      <div className="text-blue-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                         WATER LANDINGS
                       </div>
                       <div className="text-white text-2xl font-bold">
@@ -157,7 +158,7 @@ const Capsules = () => {
                     </div>
 
                     <div className=" text-center rounded-lg p-3 border border-green-400">
-                      <div className="text-green-400 text-xs font-medium mb-1 hover:shadow-md hover:scale-105 transition">
+                      <div className="text-green-400 text-xs desktop:text-sm font-medium mb-1 hover:shadow-md hover:scale-105 transition">
                         LAND LANDINGS
                       </div>
                       <div className="text-white text-2xl font-bold">
@@ -172,14 +173,14 @@ const Capsules = () => {
          
         </>
       )}
-       <div className="flex justify-center pt-4 space-x-2 bg-black">
+       <div className="flex justify-center pt-4 space-x-2 ">
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index + 1}
-                className={`px-3 py-1 rounded ${
+                className={`px-3 py-1 rounded-full ${
                   currentPage === index + 1
-                    ? "bg-green-600 text-white"
-                    : "bg-gray-200"
+                    ? "bg-cyan-700 text-white"
+                    : "bg-transparent border border-cyan-700 text-white"
                 }`}
                 onClick={() => setCurrentPage(index + 1)}
               >

@@ -51,20 +51,22 @@ const Launches = () => {
 
   return (
     <>
+    <div className="flex gap-2 flex-col laptop:flex-row justify-center w-full  py-4">
     <Search placeholder={"Search Launches..."} /> 
      <Filter>
    
 
-      <select className="bg-black"
+      <select className="bg-[#0F1112] text-white  border border-slate-400 p-2 rounded-md "
         value={launchFilter.success}
         onChange={(e) => setLaunchFilter((prev) => ({ ...prev, success:e.target.value }))}
       >
-        <option value="">All</option>
+        <option value="">-- Select Status --</option>
         <option value="true">Success</option>
         <option value="false">Failed</option>
       </select>
     </Filter>
-    {loading ? (<p className="bg-black text-white">Loading Launches...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
+    </div>
+    {loading ? (<p className=" text-white">Loading Launches...</p>):posts.length===0?(<p className="text-center text-gray-500 text-lg">No data found.</p>):(
        <>
       <Grid>
         {posts.map((post, index) => (
@@ -138,11 +140,11 @@ const Launches = () => {
       
     </>
     )}
-    <div className="flex justify-center mt-4 bg-black space-x-2">
+    <div className="flex justify-center mt-4  space-x-2">
         {/* First Button */}
         {currentPage > 3 && (
           <button
-            className="px-3 py-1 rounded bg-gray-200"
+            className="px-3 py-1 rounded-full bg-transparent border border-cyan-700 text-white"
             onClick={() => setCurrentPage(1)}
           >
             1
@@ -150,7 +152,7 @@ const Launches = () => {
         )}
 
         {/* Ellipsis for previous pages */}
-        {currentPage > 3 && <span className="px-3 py-1">...</span>}
+        {currentPage > 3 && <span className="px-3 py-1 text-white">...</span>}
 
         {/* Page Number Buttons */}
         {Array.from({ length: totalPages }, (_, index) => {
@@ -159,10 +161,10 @@ const Launches = () => {
             return (
               <button
                 key={page}
-                className={`px-3 py-1 rounded ${
-                  currentPage === page
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200"
+                className={`px-3 py-1 rounded-full ${
+                  currentPage === index + 1
+                    ? "bg-cyan-700 text-white"
+                    : "bg-transparent border border-cyan-700 text-white"
                 }`}
                 onClick={() => setCurrentPage(page)}
               >
@@ -174,12 +176,12 @@ const Launches = () => {
         })}
 
         {/* Ellipsis for next pages */}
-        {currentPage < totalPages - 2 && <span className="px-3 py-1">...</span>}
+        {currentPage < totalPages - 2 && <span className="px-3 py-1 text-white">...</span>}
 
         {/* Last Button */}
         {currentPage < totalPages - 2 && (
           <button
-            className="px-3 py-1 rounded bg-gray-200"
+            className="px-3 py-1 rounded-full bg-transparent border border-cyan-700 text-white"
             onClick={() => setCurrentPage(totalPages)}
           >
             {totalPages}
