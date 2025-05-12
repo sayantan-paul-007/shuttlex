@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../assets/logo.svg'
 const Hero = () => {
   return (
-    <section className='px-4 w-full mobile:px-5 tablet:px-6 laptop:px-8 desktop:px-12 desktop-large:px-16 desktop-xl:px-24 desktop-4k:px-32  text-white h-[90vh] desktop-xl:h-[100vh] bg-hero-img bg-cover bg-center '>
+    <section className='px-4 w-full mobile:px-5 tablet:px-6 laptop:px-8 desktop:px-12 desktop-large:px-16 desktop-xl:px-24 desktop-4k:px-32  text-white h-[90vh] desktop:h-[100vh] bg-hero-img bg-cover bg-center '>
       
       <div className='container flex flex-col  h-[60%] justify-between gap-y-10'>
         <div>
