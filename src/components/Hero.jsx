@@ -4,11 +4,13 @@ const Hero = () => {
   return (
     <section className='px-4 w-full mobile:px-5 tablet:px-6 laptop:px-8 desktop:px-12 desktop-large:px-16 desktop-xl:px-24 desktop-4k:px-32  text-white h-[90vh] desktop:h-[100vh] bg-hero-img bg-cover bg-center '>
       
-      <div className='container flex flex-col  h-[60%] justify-between gap-y-10'>
+      <div className='container h-[60%]'>
         <div>
            <img src={Logo} className='aspect-square h-32 desktop-xl:h-48 desktop-2k:h-64 desktop-4k:h-80' alt="" />
 
         </div>
+        <div className='flex flex-col items-center'>
+        
        <div>
         <h1 className='text-2xl tablet:text-4xl desktop-large:text-5xl desktop-2k:text-7xl desktop-4k:text-9xl font-headingFont pb-3  desktop-large:pb-6'>
         SHUTTLEX — Explore the Future of Space Travel
@@ -24,7 +26,7 @@ const Hero = () => {
         
         </button>
        </div>
-
+    </div>
       
       </div>
 
